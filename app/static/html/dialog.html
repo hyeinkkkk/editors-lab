@@ -1,0 +1,28 @@
+<md-dialog>
+  <form ng-cloak>
+    <!--<md-toolbar>-->
+      <!--<div class="md-toolbar-tools">-->
+        <!--<h2>ddddddd</h2>-->
+        <!--<span flex></span>-->
+        <!--<md-button class="md-icon-button" ng-click="cancel()">-->
+          <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
+        <!--</md-button>-->
+      <!--</div>-->
+    <!--</md-toolbar>-->
+
+    <md-dialog-content>
+      <div class="md-dialog-content" ng-repeat="article in newsData">
+          <h2>{{article.name}}</h2>
+          <div ng-repeat="news in article.news">
+            <a href="{{news.link}}">{{news.title}}</a>
+          </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="answer('useful')">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

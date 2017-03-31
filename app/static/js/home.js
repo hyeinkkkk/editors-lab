@@ -1,4 +1,4 @@
-app.controller('HomeController', function($scope,$http,$location)
+app.controller('HomeController', function($scope,$http,$location,$mdDialog)
 {
     console.log("ssss");
 
@@ -69,12 +69,59 @@ app.controller('HomeController', function($scope,$http,$location)
             }
           ]
         }
-    ]
-//    data = [
-//        {
-//            "name": "문재인",
-//            "category":
-//        }
-//    ];
+    ];
+
+    $http.get("/test")
+    .success(function(data,status,headers,config){
+
+        console.log("data??? list ?? ",data);
+        $scope.assemblyList = data;
+    })
+    .error(function(data, status, headers, config){});
+
+    $scope.openDialog = function(ev, name){
+        console.log("open ");
+
+        $http.get("/person?name="+name)
+        .success(function(data,status,headers,config){
+
+            console.log("data??? list ?? ",data);
+
+
+            $mdDialog.show({
+              locals:{ newsData : data},
+              controller: DialogController,
+              templateUrl: '../static/html/dialog.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose:true
+            })
+            .then(function(answer) {
+              $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+              $scope.status = 'You cancelled the dialog.';
+            });
+        })
+        .error(function(data, status, headers, config){});
+
+
+
+    }
+
+    function DialogController($scope, $mdDialog,newsData) {
+        console.log("newsData ",newsData);
+        $scope.newsData = newsData;
+        $scope.hide = function() {
+          $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+          $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+          $mdDialog.hide(answer);
+        };
+      }
 
 });

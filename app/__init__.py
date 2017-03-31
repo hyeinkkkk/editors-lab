@@ -10,6 +10,3 @@ flask_app.config.from_object('config')
 from app import apis,loads
 
 
-# data = requests.get("http://api.popong.com/v0.1/bill/search?s=문재인&api_key=test")
-data = requests.get("http://api.popong.com/v0.1/person/search?q=문&api_key=test")
-print("==== ", data.json())
