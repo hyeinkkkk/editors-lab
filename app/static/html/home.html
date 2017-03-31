@@ -1,9 +1,9 @@
 
-<div layout-padding layout="row" flex >
+<div layout-padding layout="row">
      <div layout="column" layout-align="start center" flex ng-repeat="assembly in assemblyList">
           <img ng-src="static/images/{{assembly.photo}}" width="30%">
-          <md-button class="md-raised" ng-click="openDialog($event, assembly.name)">{{assembly.name}}</md-button>
-          <div ng-repeat="item in assembly.data">{{item.title | limitTo:20}}</div>
+          <div>{{assembly.name}}</div>
+          <div class="md-raised" style="background-color:{{color[item.category]}} !important;width: 150px;height: 8px;" ng-click="openDialog($event, assembly.name)" ng-repeat="item in assembly.data">&nbsp;</div>
      </div>
 
 </div>

@@ -14,14 +14,14 @@
       <div class="md-dialog-content" ng-repeat="article in newsData">
           <h2>{{article.name}}</h2>
           <div ng-repeat="news in article.news">
-            <a href="{{news.link}}">{{news.title}}</a>
+            <a style="font-size: 10pt;" href="{{news.link}}" target="_blank">{{news.title}}</a>
           </div>
       </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button ng-click="answer('useful')">
-        Useful
+      <md-button ng-click="answer('')">
+        CLOSE
       </md-button>
     </md-dialog-actions>
   </form>

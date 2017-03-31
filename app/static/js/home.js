@@ -4,6 +4,16 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
 
     $scope.assemblyList = ["문재인", "안철수", "심상정","유승민"];
     $scope.administrator = ["이재명","안희정","홍준표"];
+    $scope.color={
+        "민생": "#09400D",
+        "안보":"#3B214C",
+        "정치":"#53585F",
+        "경제":"#022550",
+        "복지":"#A27429",
+        "기타":"#DCDEE0",
+        "역사":"#5E2B13",
+        "외교": "#1967BD"
+    }
 
     $scope.assemblyList = [
         {
@@ -120,7 +130,8 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
         };
 
         $scope.answer = function(answer) {
-          $mdDialog.hide(answer);
+//          $mdDialog.hide(answer);
+            $mdDialog.hide();
         };
       }
 

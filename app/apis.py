@@ -32,7 +32,7 @@ def test():
         {
             "name": "안철수",
             "data": data,
-            "photo": "ahn1.png",
+            "photo": "ahn2.png",
         }
     ]
     print("data?? ", data)
