@@ -1,0 +1,11 @@
+
+<div layout-padding layout="row" flex >
+     <div layout="column" layout-align="start center" flex ng-repeat="assembly in assemblyList">
+          <img src="static/images/{{assembly.photo}}" width="30%">
+          <div>{{assembly.name}}</div>
+          <div ng-repeat="item in assembly.data">{{item.title | limitTo:10}}</div>
+     </div>
+
+</div>
+
+
