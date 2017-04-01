@@ -2,16 +2,6 @@ from os import path
 import csv
 
 
-# xl_path = '/datas/moon_data.csv'
-# cwd_xl = path.dirname(path.abspath(__file__)) + xl_path
-# dir_strings = cwd_xl.split("/")
-# # dir_strings = [i for i in dir_strings if i!="db"]
-# dir_strings = [i for i in dir_strings]
-# import_xl_path = "/".join(dir_strings)
-
-
-# moon_data_list = []
-
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
@@ -30,15 +20,11 @@ class Csv(metaclass=Singleton):
         return list
 #                     19531110
 
-    def get_moon_data_list(self):
-        full_path = self.get_static_file_path("moon_data.csv")
-        moon_data_list = self.read_csv(full_path)
-        return moon_data_list
+    def get_person_data_list(self, person_name):
+        full_path = self.get_static_file_path(person_name+"_data.csv")
+        data_list = self.read_csv(full_path)
+        return data_list
 
-    def get_ahn1_data_list(self):
-        full_path = self.get_static_file_path("ahn1_data.csv")
-        ahn1_data = self.read_csv(full_path)
-        return ahn1_data
 
     def get_static_file_path(self, file_name):
         xl_path = '/datas/'+file_name

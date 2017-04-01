@@ -11,6 +11,10 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 import time
+moon_data = Csv().get_person_data_list("moon")
+ahn1_data = Csv().get_person_data_list("ahn1")
+ryu_data = Csv().get_person_data_list("ryu")
+sim_data = Csv().get_person_data_list("sim")
 
 @flask_app.route('/')
 def hello_world():
@@ -18,8 +22,7 @@ def hello_world():
 
 @flask_app.route('/test')
 def test():
-    moon_data = Csv().get_moon_data_list()
-    ahn1_data = Csv().get_ahn1_data_list()
+
     person_data = [{
             "name": "문재인",
             "data": moon_data,
@@ -37,7 +40,7 @@ def test():
         },
         {
             "name": "유승민",
-            "data": moon_data,
+            "data": ryu_data,
             "photo": "ryu.png",
         }
     ]
@@ -49,8 +52,8 @@ def get_person():
     # request.get
     name = request.args.get('name')
     keyword = request.args.get('keyword')
-    print("name ??? ",name)
-    print("keyword?? ",keyword)
+    # print("name ??? ",name)
+    # print("keyword?? ",keyword)
 
     chosun_keyword_encode = urllib.parse.quote(name+" "+keyword+" site:www.chosun.com")
     han_keyword_encode = urllib.parse.quote(name+" "+keyword+" site:www.hani.co.kr")
@@ -70,9 +73,7 @@ def get_person():
 
 def get_new_data(encoded_keyword):
     data = google.get_page('http://www.google.co.kr/search?hl=ko&q='+encoded_keyword+'&btnG=GoogleSearch')
-    print("name ??? ", data)
-    # time.sleep(1000)
-    # time.sleep(1)
+    # print("name ??? ", data)
 
     raw_data = data.decode('utf-8')
     soup = BeautifulSoup(raw_data, 'html.parser')
@@ -82,14 +83,8 @@ def get_new_data(encoded_keyword):
     news_raw_data = search_data.findAll("h3")
 
     return_data = []
-
-    import re
-
+    
     for news in news_raw_data:
         return_data.append(
             dict(title=news.find("a").get_text(), link="http://google.co.kr/" + news.find("a").get("href")))
-        # if "url" not in news.find("a").get("href"):
-        #     print("not")
-        # else:
-        #     return_data.append(dict(title=news.find("a").get_text(), link="http://google.co.kr/"+news.find("a").get("href")))
     return return_data
