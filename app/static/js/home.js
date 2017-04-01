@@ -1,19 +1,33 @@
 app.controller('HomeController', function($scope,$http,$location,$mdDialog)
 {
-    console.log("ssss");
+    $scope.filterCategory = "";
+
+    var assemblyTotalList;
 
     $scope.assemblyList = ["문재인", "안철수", "심상정","유승민"];
     $scope.administrator = ["이재명","안희정","홍준표"];
-    $scope.color={
-        "민생": "#09400D",
-        "안보":"#3B214C",
-        "정치":"#53585F",
-        "경제":"#022550",
-        "복지":"#A27429",
-        "기타":"#DCDEE0",
-        "역사":"#5E2B13",
-        "외교": "#1967BD"
+    $scope.categories={
+        "민생": { color: "#09400D", img: "life.png"},
+        "안보":{ color: "#3B214C", img: "security.png"},
+        "정치":{ color:"#53585F", img: "politics.png"},
+        "경제":{ color:"#022550", img: "economy.png"},
+        "복지":{ color: "#A27429", img: "welfare.png"},
+        "기타":{ color: "#DCDEE0", img: "etc.png"},
+        "역사":{ color: "#5E2B13", img: "history.png"},
+        "외교": { color: "#1967BD", img: "diplomacy.png"}
     }
+    $scope.filters = {};
+
+//    $scope.color={
+//        "민생": "#09400D",
+//        "안보":"#3B214C",
+//        "정치":"#53585F",
+//        "경제":"#022550",
+//        "복지":"#A27429",
+//        "기타":"#DCDEE0",
+//        "역사":"#5E2B13",
+//        "외교": "#1967BD"
+//    }
 
     $scope.assemblyList = [
         {
@@ -85,18 +99,14 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
     .success(function(data,status,headers,config){
 
         console.log("data??? list ?? ",data);
+        assemblyTotalList = data;
         $scope.assemblyList = data;
     })
     .error(function(data, status, headers, config){});
 
     $scope.openDialog = function(ev, assemblyName, item){
-        console.log("open ", item);
-
         $http.get("/person?name="+assemblyName+"&keyword="+item.keyword)
         .success(function(data,status,headers,config){
-
-            console.log("data??? list ?? ",data);
-
 
             $mdDialog.show({
               locals:{ newsData : data},
@@ -114,9 +124,26 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
         })
         .error(function(data, status, headers, config){});
 
-
-
     }
+
+//    var expectCategories = function(expectedNames, key) {
+//      element.all(by.repeater(key + ' in assembly.data').column(key + '.category')).then(function(arr) {
+//        arr.forEach(function(wd, i) {
+//          expect(wd.getText()).toMatch(expectedNames[i]);
+//        });
+//      });
+//    };
+
+//    $scope.reloadData = function(categoryName){
+//        console.log("ssss ", categoryName);
+//        angular.forEach (assemblyTotalList, function(assembly) {
+//            console.log("assembly ",assembly);
+//            for(news in assembly.data){
+//
+//            }
+//        });
+//
+//    }
 
     function DialogController($scope, $mdDialog,newsData) {
         console.log("newsData ",newsData);

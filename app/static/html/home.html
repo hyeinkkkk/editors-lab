@@ -1,9 +1,16 @@
 
 <div layout-padding layout="row">
+     <div>
+          <div>카테고리</div>
+          <div layout-padding>&nbsp;</div>
+          <div layout-padding>&nbsp;</div>
+          <md-button class="md-raised" width="150px" ng-click="filters.category = ''">전체보기</md-button>
+          <img layout-padding ng-src="static/images/{{categoryInfo.img}}" ng-click="filters.category = categoryName"  width="150px" layout="column" layout-align="center center" ng-repeat="(categoryName, categoryInfo) in categories">{{categoryName}}</img>
+     </div>
      <div layout="column" layout-align="start center" flex ng-repeat="assembly in assemblyList">
           <img ng-src="static/images/{{assembly.photo}}" width="30%">
           <div>{{assembly.name}}</div>
-          <div class="md-raised" style="background-color:{{color[item.category]}} !important;width: 150px;height: 8px;" ng-click="openDialog($event, assembly.name, item)" ng-repeat="item in assembly.data">&nbsp;</div>
+          <div class="md-raised" style="background-color:{{categories[item.category].color}} !important;width: 150px;height: 8px;" ng-click="openDialog($event, assembly.name, item)" ng-repeat="item in assembly.data | filter:filters">&nbsp;</div>
      </div>
 
 </div>
