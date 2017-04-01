@@ -36,13 +36,13 @@
 
 <div layout-padding class="bg-color" ng-show="currentPage=='행정가'">
 
-     <div layout="column" layout-align="center center">
-          <div align="center">
-               <img layout-padding src="static/images/all.png"  width="80px" ng-click="filters.category = ''">
-               <img layout-padding ng-src="static/images/{{categoryInfo.img}}" ng-click="filters.category = categoryName"  width="80px" layout-align="center center" ng-repeat="(categoryName, categoryInfo) in categories">{{categoryName}}</img>
-          </div>
+     <!--<div layout="column" layout-align="center center">-->
+          <!--<div align="center">-->
+               <!--<img layout-padding src="static/images/all.png"  width="80px" ng-click="filters.category = ''">-->
+               <!--<img layout-padding ng-src="static/images/{{categoryInfo.img}}" ng-click="filters.category = categoryName"  width="80px" layout-align="center center" ng-repeat="(categoryName, categoryInfo) in categories">{{categoryName}}</img>-->
+          <!--</div>-->
 
-     </div>
+     <!--</div>-->
      <div layout="row" layout-align="center start">
           <div layout="column"  layout-align="start center" class="assembly-box"  ng-repeat="admin in administrators">
                <img ng-src="static/images/{{admin.photo}}" width="150px">
