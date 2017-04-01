@@ -2,15 +2,15 @@ from os import path
 import csv
 
 
-xl_path = '/datas/moon_data.csv'
-cwd_xl = path.dirname(path.abspath(__file__)) + xl_path
-dir_strings = cwd_xl.split("/")
-# dir_strings = [i for i in dir_strings if i!="db"]
-dir_strings = [i for i in dir_strings]
-import_xl_path = "/".join(dir_strings)
+# xl_path = '/datas/moon_data.csv'
+# cwd_xl = path.dirname(path.abspath(__file__)) + xl_path
+# dir_strings = cwd_xl.split("/")
+# # dir_strings = [i for i in dir_strings if i!="db"]
+# dir_strings = [i for i in dir_strings]
+# import_xl_path = "/".join(dir_strings)
 
 
-moon_data_list = []
+# moon_data_list = []
 
 class Singleton(type):
     _instances = {}
@@ -20,15 +20,33 @@ class Singleton(type):
         return cls._instances[cls]
 
 class Csv(metaclass=Singleton):
-    def read_csv(self,file_name):
-        with open(file_name, 'r') as csvfile:
+    def read_csv(self,full_path):
+        list = []
+        with open(full_path, 'r') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 # print("row ??? ",row)
-                moon_data_list.append(row)
+                list.append(row)
+        return list
 #                     19531110
 
     def get_moon_data_list(self):
+        full_path = self.get_static_file_path("moon_data.csv")
+        moon_data_list = self.read_csv(full_path)
         return moon_data_list
 
-Csv().read_csv(import_xl_path)
+    def get_ahn1_data_list(self):
+        full_path = self.get_static_file_path("ahn1_data.csv")
+        ahn1_data = self.read_csv(full_path)
+        return ahn1_data
+
+    def get_static_file_path(self, file_name):
+        xl_path = '/datas/'+file_name
+        cwd_xl = path.dirname(path.abspath(__file__)) + xl_path
+        dir_strings = cwd_xl.split("/")
+        # dir_strings = [i for i in dir_strings if i!="db"]
+        dir_strings = [i for i in dir_strings]
+        import_xl_path = "/".join(dir_strings)
+        return import_xl_path
+
+# Csv().read_csv(import_xl_path)

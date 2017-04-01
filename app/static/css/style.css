@@ -3,5 +3,13 @@
 }
 
 .padding-5{
-    padding: 10vw;
+    padding: 5vw;
+}
+
+.selected{
+    font-weight: bold;
+}
+
+.highlight{
+    background-color: white;
 }

@@ -18,24 +18,30 @@ def hello_world():
 
 @flask_app.route('/test')
 def test():
-    data = Csv().get_moon_data_list()
+    moon_data = Csv().get_moon_data_list()
+    ahn1_data = Csv().get_ahn1_data_list()
     person_data = [{
             "name": "문재인",
-            "data": data,
+            "data": moon_data,
             "photo": "moon.png",
         },
         {
             "name": "심상정",
-            "data": data,
+            "data": moon_data,
             "photo": "sim.png",
         },
         {
             "name": "안철수",
-            "data": data,
-            "photo": "ahn2.png",
+            "data": ahn1_data,
+            "photo": "ahn1.png",
+        },
+        {
+            "name": "유승민",
+            "data": moon_data,
+            "photo": "ryu.png",
         }
     ]
-    print("data?? ", data)
+    # print("data?? ", data)
     return JSONEncoder(ensure_ascii=False).encode(person_data)
 
 @flask_app.route('/person/')

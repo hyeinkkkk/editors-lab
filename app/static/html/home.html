@@ -1,5 +1,8 @@
-
-<div layout-padding layout="row">
+<div class="padding-5" layout="row" layout-align="center center">
+     <md-button class="{{currentPage=='국회의원'? 'selected': ''}}" ng-click="changePage('국회의원')">국회의원</md-button>
+     <md-button class="{{currentPage=='국회의원'? '': 'selected'}}" ng-click="changePage('행정가')">행정가</md-button>
+</div>
+<div layout-padding layout="row" ng-show="currentPage=='국회의원'">
      <div>
           <div>카테고리</div>
           <div layout-padding>&nbsp;</div>
@@ -8,12 +11,27 @@
           <img layout-padding ng-src="static/images/{{categoryInfo.img}}" ng-click="filters.category = categoryName"  width="150px" layout="column" layout-align="center center" ng-repeat="(categoryName, categoryInfo) in categories">{{categoryName}}</img>
      </div>
      <div layout="column" layout-align="start center" flex ng-repeat="assembly in assemblyList">
-          <img ng-src="static/images/{{assembly.photo}}" width="30%">
-          <div>{{assembly.name}}</div>
-          <div class="md-raised" style="background-color:{{categories[item.category].color}} !important;width: 150px;height: 8px;" ng-click="openDialog($event, assembly.name, item)" ng-repeat="item in assembly.data | filter:filters">&nbsp;</div>
+          <img ng-src="static/images/{{assembly.photo}}" width="40%">
+          <div layout-padding></div>
+          <!--<div>{{assembly.name}}</div>-->
+          <div class="md-raised" ng-mouseover="myStyle={'border': '1px solid black'}" ng-mouseleave="myStyle={'background-color':categories[item.category].color}"
+               ng-style="myStyle" style="background-color:{{categories[item.category].color}} !important;width: 150px;height: 5px;"
+               ng-click="openDialog($event, assembly.name, item)" ng-repeat="item in assembly.data | filter:filters">&nbsp;</div>
      </div>
-
 </div>
 
-
+<div layout-padding layout="row" ng-show="currentPage=='행정가'">
+     <div>
+          <div>카테고리</div>
+          <div layout-padding>&nbsp;</div>
+          <div layout-padding>&nbsp;</div>
+          <md-button class="md-raised" width="150px" ng-click="filters.category = ''">전체보기</md-button>
+          <img layout-padding ng-src="static/images/{{categoryInfo.img}}" ng-click="filters.category = categoryName"  width="150px" layout="column" layout-align="center center" ng-repeat="(categoryName, categoryInfo) in categories">{{categoryName}}</img>
+     </div>
+     <div layout="column" layout-align="start center" flex ng-repeat="admin in administrators">
+          <img ng-src="static/images/{{admin.photo}}" width="30%">
+          <div>{{admin.name}}</div>
+          <div class="md-raised" style="background-color:{{categories[item.category].color}} !important;width: 150px;height: 5px;" ng-click="openDialog($event, admin.name, item)" ng-repeat="item in admin.data | filter:filters">&nbsp;</div>
+     </div>
+</div>
 
