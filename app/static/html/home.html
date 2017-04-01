@@ -1,7 +1,7 @@
 <div>
      <img width="100%" src="static/images/description.jpg">
 </div>
-<div class="padding-5" layout="row" layout-align="center center">
+<div class="padding-5 bg-color" layout="row" layout-align="center center">
      <md-button class="{{currentPage=='국회의원'? 'selected': ''}}" ng-click="changePage('국회의원')">국회의원</md-button>
      <md-button class="{{currentPage=='국회의원'? '': 'selected'}}" ng-click="changePage('행정가')">행정가</md-button>
 </div>
@@ -13,16 +13,23 @@
           </div>
 
      </div>
-     <div layout="row" layout-align="center start">
-          <div layout="column"  layout-align="start center" class="assembly-box"  ng-repeat="assembly in assemblyList">
-               <img ng-src="static/images/{{assembly.photo}}" width="150px">
+
+         <div layout="row" layout-align="center start">
+          <div show-gt-sm flex>&nbsp;</div>
+          <div layout="column" layout-align="start center" class="assembly-box" flex ng-repeat="assembly in assemblyList">
+               <div>
+                    <img ng-src="static/images/{{assembly.photo}}" width="100%">
+               </div>
                <div layout-padding></div>
                <!--<div>{{assembly.name}}</div>-->
                <div class="md-raised" ng-mouseover="myStyle={'border': '1px solid black'}" ng-mouseleave="myStyle={'background-color':categories[item.category].color}"
-                    ng-style="myStyle" style="background-color:{{categories[item.category].color}} !important;width: 150px;height: 5px;"
+                    ng-style="myStyle" style="background-color:{{categories[item.category].color}} !important;width: 100%;height: 5px;"
                     ng-click="openDialog($event, assembly.name, item)" ng-repeat="item in assembly.data | filter:filters">&nbsp;</div>
           </div>
-     </div>
+          <div show-gt-sm flex>&nbsp;</div>
+          </div>
+
+
 
 
 </div>
