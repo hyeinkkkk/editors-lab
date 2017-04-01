@@ -3,7 +3,7 @@
      <div layout="column" layout-align="start center" flex ng-repeat="assembly in assemblyList">
           <img ng-src="static/images/{{assembly.photo}}" width="30%">
           <div>{{assembly.name}}</div>
-          <div class="md-raised" style="background-color:{{color[item.category]}} !important;width: 150px;height: 8px;" ng-click="openDialog($event, assembly.name)" ng-repeat="item in assembly.data">&nbsp;</div>
+          <div class="md-raised" style="background-color:{{color[item.category]}} !important;width: 150px;height: 8px;" ng-click="openDialog($event, assembly.name, item)" ng-repeat="item in assembly.data">&nbsp;</div>
      </div>
 
 </div>

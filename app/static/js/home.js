@@ -89,10 +89,10 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
     })
     .error(function(data, status, headers, config){});
 
-    $scope.openDialog = function(ev, name){
-        console.log("open ");
+    $scope.openDialog = function(ev, assemblyName, item){
+        console.log("open ", item);
 
-        $http.get("/person?name="+name)
+        $http.get("/person?name="+assemblyName+"&keyword="+item.keyword)
         .success(function(data,status,headers,config){
 
             console.log("data??? list ?? ",data);

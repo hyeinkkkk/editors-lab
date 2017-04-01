@@ -42,10 +42,12 @@ def test():
 def get_person():
     # request.get
     name = request.args.get('name')
+    keyword = request.args.get('keyword')
     print("name ??? ",name)
+    print("keyword?? ",keyword)
 
-    chosun_keyword_encode = urllib.parse.quote(name+" site:www.chosun.com")
-    han_keyword_encode = urllib.parse.quote(name+" site:www.hani.co.kr")
+    chosun_keyword_encode = urllib.parse.quote(name+" "+keyword+" site:www.chosun.com")
+    han_keyword_encode = urllib.parse.quote(name+" "+keyword+" site:www.hani.co.kr")
 
     return_data = [
         {
