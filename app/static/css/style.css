@@ -8,8 +8,62 @@
 
 .selected{
     font-weight: bold;
+
+}
+
+.selected span{
+    border-bottom: 1px solid black;
 }
 
 .highlight{
     background-color: white;
+}
+
+body{
+    background-color: #E5E5E7;
+}
+
+.bg-color{
+    background-color: #E5E5E7;
+}
+.assembly-box{
+    margin:2vw;
+}
+
+.do_not_service{
+
+}
+
+.article-name{
+    font-weight: bold;
+}
+
+.item-title-box{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.dialog-box{
+    padding: 2vw 2vw;
+    padding-bottom: 1vw;
+}
+
+.more-div{
+    font-size: 10px;
+}
+
+.item-description{
+    font-size: 15px;
+}
+
+md-dialog .md-dialog-content {
+    padding: 13px;
+}
+
+.hr-gray{
+   color: #939598;
+}
+
+.dialog-date{
+    font-size: 11px;
 }

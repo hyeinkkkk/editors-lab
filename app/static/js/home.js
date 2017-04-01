@@ -27,7 +27,7 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
         },
         {
           "name": "안희정",
-          "photo": "ahn1.png",
+          "photo": "ahn2.png",
           "data": [
             {
               "title": "세월호 진상규명",
@@ -55,15 +55,15 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
         }];
 
     $scope.categories={
-        "민생": { color: "#45948B", img: "life.png"},
-        "안보":{ color: "#233A68", img: "security.png"},
-        "정치":{ color:"#939598", img: "politics.png"},
+        "사회": {color:"#3A778F", img:"society.png"},
         "경제":{ color:"#2A5E71", img: "economy.png"},
+        "민생": { color: "#45948B", img: "life.png"},
         "복지":{ color: "#63C3B5", img: "welfare.png"},
-        "기타":{ color: "#C4C3C3", img: "etc.png"},
-        "역사":{ color: "#34588D", img: "history.png"},
         "외교": { color: "#1174B7", img: "diplomacy.png"},
-        "사회": {color:"#3A778F", img:"society.png"}
+        "역사":{ color: "#34588D", img: "history.png"},
+        "안보":{ color: "#233A68", img: "security.png"},
+        "기타":{ color: "#C4C3C3", img: "etc.png"},
+        "정치":{ color:"#939598", img: "politics.png"}
     }
     $scope.filters = {};
 
@@ -86,11 +86,28 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
     }
 
     $scope.openDialog = function(ev, assemblyName, item){
+        console.log("tim? ",item);
+//        newsData=[{name:"조선일보",news:[{link:'ee', title:"ssss"},{link:'ee', title:"ssss"},{link:'ee', title:"ssss"}]},
+//        {name:"한겨레",news:[{link:'ee', title:"ssss"},{link:'ee', title:"ssss"},{link:'ee', title:"ssss"}]}];
+//        $mdDialog.show({
+//          locals:{ newsData : newsData, item: item},
+//          controller: DialogController,
+//          templateUrl: '../static/html/dialog.html',
+//          parent: angular.element(document.body),
+//          targetEvent: ev,
+//          clickOutsideToClose:true
+//        })
+//        .then(function(answer) {
+//          $scope.status = 'You said the information was "' + answer + '".';
+//        }, function() {
+//          $scope.status = 'You cancelled the dialog.';
+//        });
+
         $http.get("/person?name="+assemblyName+"&keyword="+item.keyword)
         .success(function(data,status,headers,config){
 
             $mdDialog.show({
-              locals:{ newsData : data},
+              locals:{ newsData : data, item: item},
               controller: DialogController,
               templateUrl: '../static/html/dialog.html',
               parent: angular.element(document.body),
@@ -104,13 +121,13 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
             });
         })
         .error(function(data, status, headers, config){});
-
     }
 
 
-    function DialogController($scope, $mdDialog,newsData) {
+    function DialogController($scope, $mdDialog,newsData, item) {
         console.log("newsData ",newsData);
         $scope.newsData = newsData;
+        $scope.item = item;
         $scope.hide = function() {
           $mdDialog.hide();
         };
@@ -120,7 +137,6 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
         };
 
         $scope.answer = function(answer) {
-//          $mdDialog.hide(answer);
             $mdDialog.hide();
         };
       }

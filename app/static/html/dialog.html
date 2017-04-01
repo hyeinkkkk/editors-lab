@@ -1,4 +1,4 @@
-<md-dialog>
+<md-dialog class="dialog-box" flex="40">
   <form ng-cloak>
     <!--<md-toolbar>-->
       <!--<div class="md-toolbar-tools">-->
@@ -11,15 +11,32 @@
     <!--</md-toolbar>-->
 
     <md-dialog-content>
+      <div>
+        <p class="dialog-date">{{item.date}}</p>
+        <div class="item-title-box">{{item.title}}</div>
+
+        <div class="item-description">
+          <br><br>
+          ▪ 제안이유
+          <p>{{item.description| limitTo:200}}..</p>
+        </div>
+
+      </div>
+      <div align="right" class="more-div">
+        더보기 >
+      </div>
+      <hr>
       <div class="md-dialog-content" ng-repeat="article in newsData">
-          <h2>{{article.name}}</h2>
+          <div class="article-name">{{article.name}}</div>
           <div ng-repeat="news in article.news">
             <a style="font-size: 10pt;" href="{{news.link}}" target="_blank">{{news.title}}</a>
           </div>
       </div>
+      <hr class="hr-gray">
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
+
       <md-button ng-click="answer('')">
         CLOSE
       </md-button>
