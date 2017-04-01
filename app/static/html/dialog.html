@@ -25,6 +25,14 @@
       <div align="right" class="more-div">
         더보기 >
       </div>
+      <div layout="row" layout-align="start center">
+        <img class="thumb" src="static/images/like.png" ng-click="clickVote('좋아요')">
+        <img class="thumb" src="static/images/unlike.png" ng-click="clickVote('싫어요')">
+        <div>
+          {{vote}}
+        </div>
+
+      </div>
       <hr>
       <div class="md-dialog-content" ng-repeat="article in newsData">
           <div class="article-name">{{article.name}}</div>
@@ -37,7 +45,7 @@
 
     <md-dialog-actions layout="row">
 
-      <md-button ng-click="answer('')">
+      <md-button class="md-raised" ng-click="answer('')">
         CLOSE
       </md-button>
     </md-dialog-actions>

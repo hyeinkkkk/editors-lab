@@ -67,3 +67,9 @@ md-dialog .md-dialog-content {
 .dialog-date{
     font-size: 11px;
 }
+
+.thumb{
+    width: 35px;
+    height: 35px;
+    padding-right: 5px;
+}

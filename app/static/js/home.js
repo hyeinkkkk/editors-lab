@@ -126,8 +126,14 @@ app.controller('HomeController', function($scope,$http,$location,$mdDialog)
 
     function DialogController($scope, $mdDialog,newsData, item) {
         console.log("newsData ",newsData);
+        $scope.vote = "";
         $scope.newsData = newsData;
         $scope.item = item;
+
+        $scope.clickVote = function(vote){
+            $scope.vote = vote;
+        }
+
         $scope.hide = function() {
           $mdDialog.hide();
         };

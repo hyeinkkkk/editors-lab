@@ -30,7 +30,7 @@ def test():
         },
         {
             "name": "심상정",
-            "data": moon_data,
+            "data": sim_data,
             "photo": "sim.png",
         },
         {
@@ -83,7 +83,7 @@ def get_new_data(encoded_keyword):
     news_raw_data = search_data.findAll("h3")
 
     return_data = []
-    
+
     for news in news_raw_data:
         return_data.append(
             dict(title=news.find("a").get_text(), link="http://google.co.kr/" + news.find("a").get("href")))
